@@ -19,17 +19,24 @@ const Header: React.FC = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        {/* Menu button for smaller screens */}
+        
         <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleDrawerToggle}>
           <MenuIcon />
         </IconButton>
+          
 
-        {/* Title */}
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Crypto Platform
+          <img src='https://assets.materialup.com/uploads/e07945a2-36ad-43fc-948f-94f2c1422292/preview.jpg' alt='logo' height={80}/>
         </Typography>
 
-        {/* Navigation Drawer for smaller screens */}
+        
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <h2>
+          Crypto Platform
+          </h2>
+        </Typography>
+
+       
         <Drawer anchor="left" open={isDrawerOpen} onClose={handleDrawerToggle}>
           <List>
             <ListItem button onClick={() => handleNavigation('/')}>
@@ -44,7 +51,7 @@ const Header: React.FC = () => {
             <ListItem button onClick={() => handleNavigation('/MarketPage')}>
               <ListItemText primary="Market" />
             </ListItem>
-            {/* Add more menu items as needed */}
+         
           </List>
         </Drawer>
       </Toolbar>
