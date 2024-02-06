@@ -4,8 +4,14 @@ import { Table, TableBody, TableCell, TableContainer, TableRow, Paper, Typograph
 import Link from 'next/link';
 import Wrapper from '@/Layout/wrapper';
 import { useRouter } from 'next/router';
-import { BarChart } from '@mui/x-charts/BarChart';
-import { dehydrate } from 'react-query';
+import dynamic from 'next/dynamic';
+import React from 'react';
+
+const BarChart =dynamic(()=>import('./Chart'),{ssr:false})
+
+
+// const BarChart =dynamic(()=>import('@mui/x-charts/BarChart'),{ssr:false})
+
 
 
 
@@ -55,6 +61,9 @@ const RateDetails: React.FC = () => {
 
   
     }
+
+   
+  
 
     // const chartData = {
     //   labels: ['Label1', 'Label2', 'Label3', 'Label4', 'Label5'],
@@ -125,22 +134,11 @@ const RateDetails: React.FC = () => {
             <Link data={chartData} options={chartOptions} />
           </div> */}
 
-<BarChart
-      series={[
-        { data: [35, 44, 24, 34] },
-        { data: [51, 6, 49, 30] },
-        { data: [15, 25, 30, 50] },
-        { data: [60, 50, 15, 25] },
-      ]}
-      height={290}
-      xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'band' }]}
-      margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
-    />
-
+                <BarChart/>
                 </div>
             </Wrapper>
         </>
   );
 };
 
-export default RateDetails;
+export default   React.memo( RateDetails ,(prevProps, postProps) => prevProps === postProps);
