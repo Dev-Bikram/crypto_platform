@@ -7,7 +7,21 @@ import React from 'react';
 import { Dialog, DialogTitle, DialogContent, Typography, DialogActions } from '@mui/material';
 import Grid from '@mui/material/Grid';
 
+interface Rate {
+  id: string;
+  name: string;
+  priceUsd: Number;
+  rank: Number;
+  symbol: String;
+  currencySymbol: String;
+  type: String;
+  rateUsd: String;
+}
 
+interface SelectedRateProps {
+  currencySymbol: String;
+  rateUsd: String;
+}
 
 const Index: React.FC = () => {
 
@@ -18,7 +32,7 @@ const Index: React.FC = () => {
   const { data: rates, isLoading } = useQuery('rates', fetchRateList);
 
 
-  const [selectedRate, setSelectedRate] = React.useState(null);
+  const [selectedRate, setSelectedRate] = React.useState<SelectedRateProps|null>(null);
 
   const openDetailsModal = (rate: any) => {
     setSelectedRate(rate);
@@ -35,21 +49,7 @@ const Index: React.FC = () => {
     return <p>Loading...</p>;
   }
 
-  interface Rate {
-    id: string;
-    name: string;
-    priceUsd: Number;
-    rank: Number;
-    symbol: String;
-    currencySymbol: String;
-    type: String;
-    rateUsd: String;
-  }
 
-  interface selectedRate {
-    currencySymbol: String;
-    rateUsd: String;
-  }
 
 
 
